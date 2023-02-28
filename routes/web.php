@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('landing-page');
-});
+})->name('home');
 
 Auth::routes();
 
@@ -50,3 +50,11 @@ Route::get('logout', function () {
     Auth::logout();
     return redirect('login');
 })->name('logout');
+
+Route::get('about', function (){
+    return view('about');
+})->name('about');
+
+Route::get('formation', function (){
+    return view('formation');
+})->name('formation');

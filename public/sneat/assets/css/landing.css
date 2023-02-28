@@ -62,7 +62,7 @@ section.hero{
     padding: 80px 0;
 }
 section.hero .text1{
-    padding-top: 140px;
+    padding-top: 90px;
     font-size: 18px;
     line-height: 40px;
     color: var(--black);
@@ -80,7 +80,7 @@ b{
 }
 
 section.setup{
-    padding: 287px 0;
+    padding: 30px 0;
 }
 section.setup .text-header h3{
     font-size: 42px;
@@ -115,7 +115,10 @@ section.setup .desc p{
     margin: 0 auto;
 }
 section.information .text-information{
-    padding: 134px 0;
+    padding: 100px 0;
+}
+section.information .info-1{
+    padding-top: 100px;
 }
 section.information h5{
     font-size: 42px;
@@ -130,11 +133,11 @@ section.information p{
     color: var(--primary-dark);
     padding-top: 20px;
 }
-section.information .info-1{
-    padding: 183px 0;
+section.information{
+    padding: 60px 0;
 }
 footer {
-    padding-top: 279px;
+    padding-top: 10px;
     margin-bottom: 44px;
 
 }
@@ -146,6 +149,7 @@ footer a{
 }
 footer .copy{
     margin-top: 32px;
+    margin-bottom: 30px;
     font-size: 14px;
     color: var(--primary-dark);
     line-height: 17px;
