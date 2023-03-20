@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('landing-page');
+    return view('landing-page-new');
 });
 
 Auth::routes();
