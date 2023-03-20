@@ -72,5 +72,5 @@
 
     <script src="https://kit.fontawesome.com/a81368914c.js"></script>
     <script src="{{ asset('sneat') }}/assets/js/app.js"></script>
-  </body>
+  </body> 
 </html>
