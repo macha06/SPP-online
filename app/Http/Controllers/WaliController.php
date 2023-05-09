@@ -7,10 +7,10 @@ use App\Models\User as model;
 
 class WaliController extends Controller
 {
-    private $viewIndex = 'user_index';
+    private $viewIndex = 'wali_index';
     private $viewCreate = 'user_form';
     private $viewEdit = 'user_form';
-    private $viewShow = 'user_show';
+    private $viewShow = 'wali_show';
     private $routePrefix = 'wali';
     /**
      * Display a listing of the resource.
@@ -24,9 +24,7 @@ class WaliController extends Controller
         ];
              
         return view('admin.'. $this->viewIndex, [
-            'models' => Model::where([
-                ['akses','siswa']
-            ])
+            'models' => Model::siswa()
                 ->latest()
                 ->paginate(50),
             'routePrefix' => $this->routePrefix,
@@ -81,7 +79,12 @@ class WaliController extends Controller
      */
     public function show($id)
     {
-        //
+        $model = Model::siswa()->where('id', $id)->firstOrFail();
+        return view('admin.' . $this->viewShow, [
+            'siswa' => \App\Models\Siswa::pluck('nama', 'id'),
+            'model' => $model,
+            'title' => 'Detail DATA AKUN WALIN MURID'
+        ]);
     }
 
     /**

@@ -7,27 +7,15 @@
                 <h5 class="card-header">{{ $title }}</h5>
                 <div class="card-body">
                     <a href="{{ route( $routePrefix .'.create') }}" class="btn btn-primary mb-3 btn-sm">Tambah data</a>
-                    {!! Form::open(['route' => $routePrefix . '.index', 'method' => 'GET']) !!}
-                    <div class="input-group ">
-                        <input name="q" type="text" class="form-control" placeholder="Cari nama Siswa" aria-label="cari nama" aria-describedby="button-addon2" value="{{ request('q') }}">
-                        <button type="submit" class="btn btn-outline-primary" id="button-addon2" >
-                            <i class="bx bx-search"></i>
-                        </button>
-                      </div>
-                    {!! Form::close() !!}
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama Wali</th>
                                     <th>Nama</th>
-                                    <th>NISN</th>
-                                    <th>NIS</th>
-                                    <th>Alamat</th>
-                                    <th>Kelas</th>
-                                    <th>Jurusan</th>
-                                    <th>Angkatan</th>
+                                    <th>No.Hp</th>
+                                    <th>Email</th>
+                                    <th>Akses</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -35,14 +23,16 @@
                                 @forelse ($models as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->wali->name }}</td>
-                                        <td>{{ $item->nama }}</td>
-                                        <td>{{ $item->nisn }}</td>
-                                        <td>{{ $item->nis }}</td>
-                                        <td>{{ $item->alamat }}</td>
-                                        <td>{{ $item->kelas }}</td>
-                                        <td>{{ $item->jurusan }}</td>
-                                        <td>{{ $item->angkatan }}</td>
+                                        <td>{{ $item->name }}</td>
+                                        <td>{{ $item->nohp }}</td>
+                                        <td>{{ $item->email }}</td>
+
+                                        @if ($kds === 'wali')
+                                            <td>{{ $item->akses }}/wali siswa</td>
+                                        @else
+                                            <td>{{ $item->akses }}</td>                                          
+                                        @endif
+
                                         <td>
                                             
                                             {!! Form::open([
@@ -53,7 +43,6 @@
                                                 <a href="{{ route($routePrefix .'.edit', $item->id) }}" class="btn btn-warning btn-sm">
                                                    <i class="fa fa-edit"></i> Edit
                                                 </a>
-
                                                 <a href="{{ route($routePrefix .'.show', $item->id) }}" class="btn btn-info btn-sm m-2">
                                                    <i class="fa fa-edit"></i> Detail
                                                 </a>
