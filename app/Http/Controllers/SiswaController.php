@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Siswa as model;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 
 class SiswaController extends Controller
 {
@@ -62,11 +63,24 @@ class SiswaController extends Controller
             'wali_id' => 'nullable',
             'nama' => 'required',
             'nisn' => 'required|unique:siswas',
-            'jurusan' => 'nullable'
+            'nis' => 'required',
+            'alamat' => 'required',
+            'jurusan' => 'required',
+            'kelas' => 'required',
+            'angkatan' => 'required',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:5000',
+
         ]);
-        $requestData['password'] = bcrypt($requestData['password']);
-        $requestData['email_verified_at'] = now();
-        $requestData['akses'] = 'siswa';
+        
+        if ($request->hasFile('foto')) {
+            $requestData['foto'] =$request->file('foto')->store('public');
+        }
+
+        if ($request->filled('wali_id')) {
+            $requestData['wali_status'] = 'ok';
+        }
+
+        $requestData['user_id'] = auth()->user()->id;
         Model::create($requestData);
         flash('Data Berhasil disimpan');
         return back();
@@ -80,7 +94,10 @@ class SiswaController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('admin.' . $this->viewShow, [
+            'model' => Model::findOrFail($id),
+            'title' => 'Detail Siswa'
+        ]);
     }
 
     /**
@@ -96,7 +113,8 @@ class SiswaController extends Controller
             'method' => 'PUT',
             'route' => [$this->routePrefix.'.update', $id],
             'button' => 'UPDATE',
-            'title' => 'Form Edit Data Akun Siswa'
+            'title' => 'Form Edit Data Siswa',
+            'wali' => User::where('akses', 'siswa')->pluck('name', 'id'),
         ];
         return view('admin.'.$this->viewEdit, $data);
     }
@@ -111,32 +129,42 @@ class SiswaController extends Controller
     public function update(Request $request, $id)
     {
         $requestData = $request->validate([
-            'name' => 'required',
-            'email' => 'required|unique:users,email,'.$id,
-            'nohp' => 'required|unique:users,nohp,'.$id,
-            'password' => 'nullable'
+            'wali_id' => 'nullable',
+            'nama' => 'required',
+            'nisn' => 'required|unique:siswas,nisn,' .$id,
+            'nis' => 'required',
+            'alamat' => 'required',
+            'jurusan' => 'required',
+            'kelas' => 'required',
+            'angkatan' => 'required',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:5000',
         ]);
         $model = Model::findOrFail($id);
-        if ($requestData['password'] == "") {
-            unset($requestData['password']);
-        } else {
-            $requestData['password'] =bcrypt($requestData['password']);
+        
+        if ($request->hasFile('foto')) {
+            Storage::delete($model->foto);
+            $requestData['foto'] =$request->file('foto')->store('public');
         }
+
+        if ($request->filled('wali_id')) {
+            $requestData['wali_status'] = 'ok';
+        }
+
         $model->fill($requestData);
         $model->save();
-        flash('Data Berhasil disimpan');
-        return redirect()->route('wali.index');
+        flash('Data Berhasil diubah');
+        return back();
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified resource from storage
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $model = Model::where('akses', 'siswa')->firstOrFail();
+        $model = Model::where('id',$id);
         $model->delete();
         flash('Data berhasil dihapus');
         return back();

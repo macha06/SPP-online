@@ -7,6 +7,9 @@
                 <h5 class="card-header">{{ $title }}</h5>
                 <div class="card-body">
                     <a href="{{ route( $routePrefix .'.create') }}" class="btn btn-primary mb-3 btn-sm">Tambah data</a>
+                    {!! Form::open(['route' => $routePrefix. '.index']) !!}
+                    
+                    {!! Form::close() !!}
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>
@@ -44,6 +47,10 @@
                                             ]) !!}
                                                 <a href="{{ route($routePrefix .'.edit', $item->id) }}" class="btn btn-warning btn-sm">
                                                    <i class="fa fa-edit"></i> Edit
+                                                </a>
+
+                                                <a href="{{ route($routePrefix .'.show', $item->id) }}" class="btn btn-info btn-sm ml-2 mr-2">
+                                                   <i class="fa fa-edit"></i> Detail
                                                 </a>
                                             <button type="submit" class="btn btn-danger btn-sm">
                                                 <i class="fa fa-trash"></i> Hapus
