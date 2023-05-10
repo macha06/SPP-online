@@ -6,6 +6,7 @@ use App\Http\Controllers\BerandaAdminController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WaliController;
+use App\Http\Controllers\WaliSiswaController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -44,6 +45,7 @@ Route::prefix('admin')->middleware(['auth', 'auth.admin'])->group(function () {
     Route::resource('user', UserController::class);
     Route::resource('wali' , WaliController::class);
     Route::resource('siswa' , SiswaController::class);
+    Route::resource('walisiswa' , WaliSiswaController::class);
 });
 
 Route::get('logout', function () {

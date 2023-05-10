@@ -28,7 +28,7 @@ class SiswaController extends Controller
         if ($request->filled('q')){
             $models = Model::search($request->q)->paginate(50);
         }else{
-            $models = Model::latest()
+            $models = Model::with('wali', 'user')->latest()
             ->paginate(50);
         }
              

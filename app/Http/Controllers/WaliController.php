@@ -24,7 +24,7 @@ class WaliController extends Controller
         ];
              
         return view('admin.'. $this->viewIndex, [
-            'models' => Model::siswa()
+            'models' => Model::wali()
                 ->latest()
                 ->paginate(50),
             'routePrefix' => $this->routePrefix,
@@ -79,7 +79,7 @@ class WaliController extends Controller
      */
     public function show($id)
     {
-        $model = Model::siswa()->where('id', $id)->firstOrFail();
+        $model = Model::with('siswa')->wali()->where('id', $id)->firstOrFail();
         return view('admin.' . $this->viewShow, [
             'siswa' => \App\Models\Siswa::pluck('nama', 'id'),
             'model' => $model,

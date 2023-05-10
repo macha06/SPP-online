@@ -35,7 +35,14 @@
                             </thead>
                         </table>
                         <h4 class="my-3">Tambah Data Anak</h4>
-                        {!! Form::open() !!}
+                        {!! Form::open(['route' => 'walisiswa.store', 'method' => 'POST' ]) !!}
+                        {!! Form::hidden('wali_id', $model->id, []) !!}
+                        <div class="form-group">
+                            <label for="siswa_id">Pilih data Siswa</label>
+                            {!! Form::select('siswa_id', $siswa, null, ['class' => 'form-control select2']) !!}
+                            <span class="text-danger">{{ $errors->first('siswa_id') }}</span>
+                        </div>
+                        {!! Form::submit('SIMPAN', ['class' => 'btn btn-primary my-2']) !!}
                         {!! Form::close() !!}
                         <h4 class="my-3">Data Anak</h4>
                         <table class="table table-light">
@@ -44,14 +51,26 @@
                                     <th>No</th>
                                     <th>Nisn</th>
                                     <th>Nama</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($model->siswa as $item)
                                     <tr>
-                                        <td>{{ $loop->interation }}</td>
+                                        <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->nisn }}</td>
                                         <td>{{ $item->nama }}</td>
+                                        <td>
+                                            {!! Form::open([
+                                                'route' => ['walisiswa.update', $item->id],
+                                                'method' => 'PUT',
+                                                'onsubmit' => 'return confirm ("Yakin ingin menghapus data ini ?")',
+                                            ]) !!}
+                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                <i class="fa fa-trash"></i> Hapus
+                                            </button>
+                                            {!! Form::close() !!}
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

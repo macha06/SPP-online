@@ -47,7 +47,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function scopeSiswa($q)
+    public function scopeWali($q)
     {
        return $q->where('akses', 'siswa');
     }
