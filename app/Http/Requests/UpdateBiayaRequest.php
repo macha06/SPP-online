@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateSiswaRequest extends FormRequest
+class UpdateBiayaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,15 +24,8 @@ class UpdateSiswaRequest extends FormRequest
     public function rules()
     {
         return [
-            'wali_id' => 'nullable',
-            'nama' => 'required',
-            'nisn' => 'required|unique:siswas,nisn,' . $this->id,
-            'nis' => 'required',
-            'alamat' => 'required',
-            'jurusan' => 'required',
-            'kelas' => 'required',
-            'angkatan' => 'required',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:5000',
+            'nama' => 'required|unique:biayas,nama,' . $this->biaya,
+            'jumlah' => 'required',
         ];
     }
 }
