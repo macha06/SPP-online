@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ asset('sneat') }}/assets/css/style.css" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('sneat') }}/assets/img/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('sneat') }}/assets/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('sneat') }}/assets/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('sneat') }}/assets/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="{{ asset('sneat') }}/assets/img/favicon/site.webmanifest">
     <title>Sign in & Sign up Form</title>
   </head>
   <body>
@@ -21,6 +26,12 @@
             <div class="input-field">
               <i class="fas fa-lock"></i>
               <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Pasword">
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="remember-me">
+              <label class="form-check-label" for="remember-me">
+                Remember Me
+              </label>
             </div>
             <input type="submit" value="Login" class="btn solid" />
             <p class="social-text">Atau daftar Mengunakan akun sosial media</p>
@@ -84,7 +95,7 @@
         </div>
         <div class="panel right-panel">
           <div class="content">
-            <h3>Sat diantara kita?</h3>
+            <h3>Satu diantara kita?</h3>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum laboriosam ad deleniti.</p>
             <button class="btn transparent" id="sign-in-btn">Sign in</button>
           </div>

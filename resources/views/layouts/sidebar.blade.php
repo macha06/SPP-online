@@ -23,25 +23,25 @@
       <li class="menu-item {{ \Route::is('user.*') ? 'active' : '' }}">
         <a href="{{ route('user.index') }}" class="menu-link">
           <i class="menu-icon tf-icons bx bx-collection"></i>
-          <div data-i18n="Basic">data Petugas</div>
+          <div data-i18n="Basic">Data Petugas</div>
         </a>
       </li>
       <li class="menu-item {{ \Route::is('wali.*') ? 'active' : '' }}">
         <a href="{{ route('wali.index') }}" class="menu-link">
           <i class="menu-icon tf-icons bx bx-collection"></i>
-          <div data-i18n="Basic">data wali siswa</div>
+          <div data-i18n="Basic">Data wali siswa</div>
         </a>
       </li>
       <li class="menu-item {{ \Route::is('siswa.*') ? 'active' : '' }}">
         <a href="{{ route('siswa.index') }}" class="menu-link">
           <i class="menu-icon tf-icons bx bx-collection"></i>
-          <div data-i18n="Basic">data Siswa</div>
+          <div data-i18n="Basic">Data Siswa</div>
         </a>
       </li>
       <li class="menu-item {{ \Route::is('biaya.*') ? 'active' : '' }}">
         <a href="{{ route('biaya.index') }}" class="menu-link">
           <i class="menu-icon tf-icons bx bx-collection"></i>
-          <div data-i18n="Basic">data Biaya</div>
+          <div data-i18n="Basic">Data Biaya</div>
         </a>
       </li>
     </ul>
