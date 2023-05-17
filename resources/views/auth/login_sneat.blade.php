@@ -10,7 +10,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('sneat') }}/assets/img/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('sneat') }}/assets/img/favicon/favicon-16x16.png">
     <link rel="manifest" href="{{ asset('sneat') }}/assets/img/favicon/site.webmanifest">
-    <title>Sign in & Sign up Form</title>
+    <title>Login & Register</title>
   </head>
   <body>
     <div class="container">
@@ -87,6 +87,17 @@
       <div class="panels-container">
         <div class="panel left-panel">
           <div class="content">
+            <a href="{{ url('/') }}" style="background-color:
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;"
+            > < kembali </a>
             <h3>Baru disini?</h3>
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis, ex ratione. Aliquid!</p>
             <button class="btn transparent" id="sign-up-btn">Sign up</button>

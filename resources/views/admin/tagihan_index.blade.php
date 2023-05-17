@@ -20,8 +20,8 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama Biaya</th>
-                                    <th>Jumlah</th>
+                                    <th>NISN</th>
+                                    <th>Nama</th>
                                     <th>Created By</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -30,8 +30,9 @@
                                 @forelse ($models as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->nama }}</td>
-                                        <td>{{ $item->formatRupiah('jumlah') }}</td>
+                                        <td>{{ $item->siswa->nisn }}</td>
+                                        <td>{{ $item->siswa->nama }}</td>
+                                        <td>{{ $item->formatRupiah('jumlah_biaya') }}</td>
                                         <td>{{ $item->user->name }}</td>
                                         <td>
                                             
