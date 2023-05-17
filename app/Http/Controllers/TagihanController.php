@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Tagihan as Model;
 use App\Http\Requests\StoreTagihanRequest;
 use App\Http\Requests\UpdateTagihanRequest;
+use App\Models\Biaya;
 use App\Models\Siswa;
 
 class TagihanController extends Controller
@@ -55,7 +56,8 @@ class TagihanController extends Controller
             'button' => 'SIMPAN',
             'title' => 'Form Data Tagihan',
             'angkatan' => $siswa->pluck('angkatan', 'angkatan'),
-            'kelas' => $siswa->pluck('kelas', 'kelas')
+            'kelas' => $siswa->pluck('kelas', 'kelas'),
+            'biaya' =>Biaya::get()
         ];
         return view('admin.'. $this->viewCreate, $data);
     }
@@ -68,7 +70,14 @@ class TagihanController extends Controller
      */
     public function store(StoreTagihanRequest $request)
     {
-        //
+        //1. Lakukan Validasi
+        //2. ambil data biaya yang ditaagihkan
+        //3. ambil data siswa yang ditaagihkan berdasrkan kels atau angkatan
+        //4. Lakukan perullangan berdaasarkaan dataa siswa
+        //5. didalam perlangan , span dattaa erdasaarkaan biiya dan siswa
+        //6. siimpan notf database ntk tagihan
+        //7. redirect back
+        //8. redirect ehhalaan index
     }
 
     /**
@@ -77,7 +86,7 @@ class TagihanController extends Controller
      * @param  \App\Models\Tagihan  $tagihan
      * @return \Illuminate\Http\Response
      */
-    public function show(Tagihan $tagihan)
+    public function show(Model $tagihan)
     {
         //
     }
@@ -88,7 +97,7 @@ class TagihanController extends Controller
      * @param  \App\Models\Tagihan  $tagihan
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tagihan $tagihan)
+    public function edit(Model $tagihan)
     {
         //
     }
@@ -100,7 +109,7 @@ class TagihanController extends Controller
      * @param  \App\Models\Tagihan  $tagihan
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateTagihanRequest $request, Tagihan $tagihan)
+    public function update(UpdateTagihanRequest $request, Model $tagihan)
     {
         //
     }
@@ -111,7 +120,7 @@ class TagihanController extends Controller
      * @param  \App\Models\Tagihan  $tagihan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tagihan $tagihan)
+    public function destroy(Model $tagihan)
     {
         //
     }
