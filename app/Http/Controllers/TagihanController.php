@@ -28,7 +28,14 @@ class TagihanController extends Controller
         $data =[
             "kds" => "murid",
         ];
-        $models = Model::with('user', 'siswa')->latest()->paginate(50);   
+        if ($request->filled('bulan') && $request->filled('tahun')){
+            $models = Model::with('user', 'siswa')->groupBy('siswa_id')->latest()
+            ->whereMonth('tanggal_tagihan', $request->bulan)
+            ->whereYear('tanggal_tagihan', $request->tahun)
+            ->paginate(50);
+        }else{
+            $models = Model::with('user', 'siswa')->groupBy('siswa_id')->latest()->paginate(50);   
+        }
         return view('admin.'. $this->viewIndex, [
             'models' => $models,
             'routePrefix' => $this->routePrefix,
@@ -122,34 +129,17 @@ class TagihanController extends Controller
      * @param  \App\Models\Tagihan  $tagihan
      * @return \Illuminate\Http\Response
      */
-    public function show(Model $tagihan)
+    public function show(Request $request, $id)
     {
-        //
+        $tagihan = Model::with('siswa')->where('siswa_id', $request->siswa_id)
+             ->whereMonth('tanggal_tagihan', $request->bulan)
+             ->whereYear('tanggal_tagihan', $request->tahun)
+             ->get();
+        $data['tagihan'] = $tagihan;
+        $data['siswa'] = $tagihan->first()->siswa;
+        $data['periode'] = Carbon::parse($tagihan->first()->tanggal_tagihan)->translatedFormat('F Y');
+        return view('admin.' . $this->viewShow, $data);
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Tagihan  $tagihan
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Model $tagihan)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateTagihanRequest  $request
-     * @param  \App\Models\Tagihan  $tagihan
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateTagihanRequest $request, Model $tagihan)
-    {
-        //
-    }
-
     /**
      * Remove the specified resource from storage.
      *

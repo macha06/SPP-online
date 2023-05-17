@@ -12,6 +12,7 @@ class Tagihan extends Model
     use HasFactory;
     use HasFormatRupiah;
     protected $guarded = [];
+    protected $dates = ['tanggal_tagihan', 'tanggal_jatuh_tempo'];
     /**
      * Get the user that owns the Tagihan
      *

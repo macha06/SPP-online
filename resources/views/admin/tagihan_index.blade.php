@@ -6,15 +6,26 @@
             <div class="card">
                 <h5 class="card-header">{{ $title }}</h5>
                 <div class="card-body">
-                    <a href="{{ route( $routePrefix .'.create') }}" class="btn btn-primary mb-3 btn-sm">Tambah data</a>
-                    {!! Form::open(['route' => $routePrefix . '.index', 'method' => 'GET']) !!}
-                    <div class="input-group ">
-                        <input name="q" type="text" class="form-control" placeholder="Cari Data" aria-label="cari nama" aria-describedby="button-addon2" value="{{ request('q') }}">
-                        <button type="submit" class="btn btn-outline-primary" id="button-addon2" >
-                            <i class="bx bx-search"></i>
-                        </button>
-                      </div>
-                    {!! Form::close() !!}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a href="{{ route( $routePrefix .'.create') }}" class="btn btn-primary mb-3 btn-sm">Tambah data</a>
+                        </div>
+                        <div class="col-md-6">
+                            {!! Form::open(['route' => $routePrefix . '.index', 'method' => 'GET']) !!}
+                            <div class="row">
+                                <div class="col-md-4 col-sm-12">
+                                  {!! Form::selectMonth('bulan', request('bulan'), ['class' => 'form-control']) !!}
+                                </div>
+                                <div class="col-md-4 col-sm-12">
+                                  {!! Form::selectRange('tahun', 2020, date('Y') + 1, request('tahun'), ['class' => 'form-control']) !!}
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-primary" type="submit">Tampil</button>
+                                </div>
+                            </div>
+                            {!! Form::close() !!}
+                        </div>
+                    </div>
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>
@@ -22,7 +33,8 @@
                                     <th>No</th>
                                     <th>NISN</th>
                                     <th>Nama</th>
-                                    <th>Created By</th>
+                                    <th>Tanggal Tagihan</th>
+                                    <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -32,8 +44,8 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->siswa->nisn }}</td>
                                         <td>{{ $item->siswa->nama }}</td>
-                                        <td>{{ $item->formatRupiah('jumlah_biaya') }}</td>
-                                        <td>{{ $item->user->name }}</td>
+                                        <td>{{ $item->tanggal_tagihan->format('d M Y') }}</td>
+                                        <td>{{ $item->status }}</td>
                                         <td>
                                             
                                             {!! Form::open([
@@ -41,11 +53,17 @@
                                                 'method' => 'DELETE',
                                                 'onsubmit' => 'return confirm ("Yakin ingin menghapus data ini ?")',
                                             ]) !!}
-                                                <a href="{{ route($routePrefix .'.edit', $item->id) }}" class="btn btn-warning btn-sm">
+                                                {{-- <a href="{{ route($routePrefix .'.edit', $item->id) }}" class="btn btn-warning btn-sm">
                                                    <i class="fa fa-edit"></i> Edit
-                                                </a>
+                                                </a> --}}
 
-                                                <a href="{{ route($routePrefix .'.show', $item->id) }}" class="btn btn-info btn-sm m-2">
+                                                <a href="{{ route($routePrefix .'.show', [
+                                                    $item->siswa_id,
+                                                    'siswa_id' => $item->siswa_id,
+                                                    'bulan' => $item->tanggal_tagihan->format('m'),
+                                                    'tahun' => $item->tanggal_tagihan->format('Y'), 
+                                                ]) }}"
+                                                 class="btn btn-info btn-sm m-2 mx-3">
                                                    <i class="fa fa-edit"></i> Detail
                                                 </a>
                                             <button type="submit" class="btn btn-danger btn-sm">
