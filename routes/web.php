@@ -5,6 +5,7 @@ use App\Http\Controllers\BerandaSiswaController;
 use App\Http\Controllers\BerandaAdminController;
 use App\Http\Controllers\BiayaController;
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\TagihanController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WaliController;
 use App\Http\Controllers\WaliSiswaController;
@@ -48,6 +49,7 @@ Route::prefix('admin')->middleware(['auth', 'auth.admin'])->group(function () {
     Route::resource('siswa' , SiswaController::class);
     Route::resource('walisiswa' , WaliSiswaController::class);
     Route::resource('biaya' , BiayaController::class);
+    Route::resource('tagihan' , TagihanController::class);
 });
 
 Route::get('logout', function () {
