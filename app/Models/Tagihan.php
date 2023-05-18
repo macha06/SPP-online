@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Traits\HasFormatRupiah;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -13,6 +14,7 @@ class Tagihan extends Model
     use HasFormatRupiah;
     protected $guarded = [];
     protected $dates = ['tanggal_tagihan', 'tanggal_jatuh_tempo'];
+    protected $with = ['user', 'siswa', 'tagihanDetails'];
     /**
      * Get the user that owns the Tagihan
      *
@@ -31,6 +33,16 @@ class Tagihan extends Model
     public function siswa(): BelongsTo
     {
         return $this->belongsTo(Siswa::class);
+    }
+
+    /**
+     * Get all of the tagihanDetails for the Tagihan
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function tagihanDetails(): HasMany
+    {
+        return $this->hasMany(TagihanDetail::class);
     }
 
     protected static function booted()
