@@ -28,7 +28,7 @@
     <div class="row mt-4">
         <div class="col-md-5">
             <div class="card">
-                <h5 class="card-header">DATA TAGIHAN {{ $periode }}</h5>
+                <h5 class="card-header">DATA TAGIHAN {{ strtoupper($periode) }}</h5>
                 <div class="card-body">
                     <table class="table table-sm table-bordered">
                         <thead>
@@ -47,9 +47,32 @@
                                 </tr>
                             @endforeach
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="2">Total Pembayaran</td>
+                                <td>{{ formatRupiah($tagihan->tagihanDetails->sum('jumlah_biaya')) }}</td>
+                            </tr>
+                        </tfoot>
                     </table>
+                    <h5 class="mt-3">Status Pebayaran : {{ strtoupper($tagihan->status) }}</h5>
                 </div>
-                <h5 class="card-header">DATA PEMBAYARAN</h5>
+                <h5 class="card-header">FORM PEMBAYARAN</h5>
+                <div class="card-body">
+                    {!! Form::model($model, ['route' => 'pembayaran.store' ,'method' => 'POST']) !!}
+                    {!! Form::hidden('tagihan_id', $tagihan->id, []) !!}
+                <div class="form-group">
+                    <label for="tanggal_bayar">Tanggal Pembayaran</label>
+                    {!! Form::date('tanggal_bayar', $model->tanggal_bayar ?? \Carbon\Carbon::now(), ['class' => 'form-control']) !!}
+                    <span class="text-danger">{{ $errors->first('tanggal_bayar') }}</span>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="jumlah_dibayar">Jumlah Yang Dibayarkan</label>
+                    {!! Form::text('jumlah_dibayar', null, ['class' => 'form-control rupiah']) !!}
+                    <span class="text-danger">{{ $errors->first('jumlah_dibayar') }}</span>
+                </div>
+                {!! Form::submit('SIMPAN', ['class' => 'btn btn-primary mt-3']) !!}
+                {!! Form::close() !!}
+                </div>
             </div>
         </div>
         <div class="col-md-7">
