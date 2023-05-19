@@ -4,6 +4,7 @@ use App\Http\Controllers\BerandaPetugasController;
 use App\Http\Controllers\BerandaSiswaController;
 use App\Http\Controllers\BerandaAdminController;
 use App\Http\Controllers\BiayaController;
+use App\Http\Controllers\KwitansiPembayaranController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\TagihanController;
@@ -52,6 +53,7 @@ Route::prefix('admin')->middleware(['auth', 'auth.admin'])->group(function () {
     Route::resource('biaya' , BiayaController::class);
     Route::resource('tagihan' , TagihanController::class);
     Route::resource('pembayaran' , PembayaranController ::class);
+    Route::get('kwitansi-pembayaran/{id}', [KwitansiPembayaranController::class, 'show'])->name('kwitansipembayaran.show');
 });
 
 Route::get('logout', function () {

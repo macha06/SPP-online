@@ -54,6 +54,29 @@
                             </tr>
                         </tfoot>
                     </table>
+                    <h5 class="card-header px-0">DATA PEMBAYARAN</h5>
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>TANGGAL</th>
+                                <th>JUMLAH</th>
+                                <th>METODE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($tagihan->pembayaran as $item)
+                                <tr>    
+                                    <td>
+                                        <a href="{{ route('kwitansipembayaran.show', $item->id) }}"><i class="fa fa-print"></i></a>
+                                    </td>
+                                    <td>{{ $item->tanggal_bayar->translatedFormat('d/m/Y') }}</td>
+                                    <td>{{ formatRupiah($item->jumlah_dibayar) }}</td>
+                                    <td>{{ $item->metode_pembayaran }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                     <h5 class="mt-3">Status Pebayaran : {{ strtoupper($tagihan->status) }}</h5>
                 </div>
                 <h5 class="card-header">FORM PEMBAYARAN</h5>
