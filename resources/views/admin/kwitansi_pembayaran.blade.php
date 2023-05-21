@@ -1,6 +1,9 @@
 @extends('layouts.app_sneat_blank')
 
 @section('content')
+<script type="text/javascript">
+    window.print();
+</script>
 <div class="container mt-5">
     <div class="d-flex justify-content-center row">
         <div class="col-md-8">
@@ -18,36 +21,35 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Product</th>
-                                    <th>Unit</th>
-                                    <th>Price</th>
-                                    <th>Total</th>
+                                    <th>Tanggal Pembayaran</th>
+                                    <th>Metode bayar</th>
+                                    <th>Jumlah Pembayaran</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Custom oil painting (24 X 36 in.)</td>
-                                    <td>10</td>
-                                    <td>34</td>
-                                    <td>340</td>
-                                </tr>
-                                <tr>
-                                    <td>Digital illustraion paint(8.5 X 11 in.)</td>
-                                    <td>12</td>
-                                    <td>50</td>
-                                    <td>600</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td>Total</td>
-                                    <td>940</td>
+                                <tr>    
+                                    <td>{{ $pembayaran->tanggal_bayar->translatedFormat('d/m/Y') }}</td>
+                                    <td>{{ $pembayaran->metode_pembayaran }}</td>
+                                    <td>{{ formatRupiah($pembayaran->jumlah_dibayar) }}</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
-                <div class="text-right mb-3"><button class="btn btn-danger btn-sm mr-5" type="button">Pay Now</button></div>
+                <div class="row">
+                    <div class="col-9">
+                        <div class="text-right mb-3 font-italic"><i>Terbilang : {{ ucwords(terbilang($pembayaran->jumlah_dibayar)) }} </i></div>
+                    </div>
+                    <div class="col-3">
+                        <div>
+                            Tangerang, {{ $pembayaran->tanggal_bayar->translatedFormat('d F Y') }}
+                            <br />
+                            <br />
+                            <br />
+                            <u class="text-center">{{ $pembayaran->user->name }}</u>     
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

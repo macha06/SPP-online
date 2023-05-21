@@ -18,7 +18,7 @@
         <div class="signin-signup">
           <form action="{{ route ('login') }}" class="sign-in-form" method="POST">
             @csrf
-            <h2 class="title">Login Admin</h2>
+            <h2 class="title">Wali Murid</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
               <input type="text" id="email" type="email" @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Email" />

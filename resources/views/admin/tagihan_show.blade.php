@@ -21,6 +21,10 @@
                             <td>: {{ $siswa->nama }}</td>
                         </tr>
                     </table>
+                    <a href="{{ route('kartuspp.index', [
+                        'siswa_id' => $siswa->id,
+                        'tahun' => request('tahun')
+                    ]) }}" class="btn btn-primary btn-sm" target="blank"><i class="fa fa-file"></i> Kartu Tagihan {{ request('tahun') }}</a>
                 </div>
             </div>
         </div>
@@ -53,8 +57,14 @@
                                 <td>{{ formatRupiah($tagihan->tagihanDetails->sum('jumlah_biaya')) }}</td>
                             </tr>
                         </tfoot>
-                    </table>
-                    <h5 class="card-header px-0">DATA PEMBAYARAN</h5>
+                    </table>              
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="card">
+                <h5 class="card-header">DATA PEMBAYARAN</h5>
+                <div class="card-body">
                     <table class="table table-striped table-bordered">
                         <thead>
                             <tr>
@@ -95,14 +105,6 @@
                 </div>
                 {!! Form::submit('SIMPAN', ['class' => 'btn btn-primary mt-3']) !!}
                 {!! Form::close() !!}
-                </div>
-            </div>
-        </div>
-        <div class="col-md-7">
-            <div class="card">
-                <h5 class="card-header">KARTU SPP</h5>
-                <div class="card-body">
-                    Kartu spp
                 </div>
             </div>
         </div>

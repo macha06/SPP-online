@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BerandaPetugasController;
 use App\Http\Controllers\BerandaSiswaController;
 use App\Http\Controllers\BerandaAdminController;
 use App\Http\Controllers\BiayaController;
+use App\Http\Controllers\KartuSppController;
 use App\Http\Controllers\KwitansiPembayaranController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\SiswaController;
@@ -54,7 +56,10 @@ Route::prefix('admin')->middleware(['auth', 'auth.admin'])->group(function () {
     Route::resource('tagihan' , TagihanController::class);
     Route::resource('pembayaran' , PembayaranController ::class);
     Route::get('kwitansi-pembayaran/{id}', [KwitansiPembayaranController::class, 'show'])->name('kwitansipembayaran.show');
+    Route::get('kartuspp', [KartuSppController::class, 'index'])->name('kartuspp.index');
 });
+
+Route::get('login-wali', [LoginController::class, 'showLoginFormWali'])->name('login.wali');
 
 Route::get('logout', function () {
     Auth::logout();
