@@ -34,21 +34,6 @@
               </label>
             </div>
             <input type="submit" value="Login" class="btn solid" />
-            <p class="social-text">Atau daftar Mengunakan akun sosial media</p>
-            <div class="social-media">
-              <a href="#" class="social-icon">
-                <i class="fab fa-facebook-f"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-twitter"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-google"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-linkedin-in"></i>
-              </a>
-            </div>
           </form>
           <form action="{{ route('register') }}" method="POST" class="sign-up-form">
             <h2 class="title">Daftar</h2>
@@ -87,20 +72,9 @@
       <div class="panels-container">
         <div class="panel left-panel">
           <div class="content">
-            <a href="{{ url('/') }}" style="background-color:
-            border: none;
-            color: white;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;"
-            > < kembali </a>
-            <h3>Baru disini?</h3>
+            <h3>Kembali kehalaman Utama</h3>
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis, ex ratione. Aliquid!</p>
-            <button class="btn transparent" id="sign-up-btn">Sign up</button>
+            <button class="btn transparent"><a href="{{ url('/') }}">Kembali</a></button>
           </div>
           <img src="{{ asset('sneat') }}/assets/img/log.svg" class="image" alt="" />
         </div>

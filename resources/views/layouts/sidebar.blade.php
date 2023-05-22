@@ -39,7 +39,13 @@
           <div data-i18n="Basic">Data Siswa</div>
         </a>
       </li>
-      <li class="menu-header small text-uppercase"><span class="menu-header-text">Pebayaran</span></li>
+      <li class="menu-header small text-uppercase"><span class="menu-header-text">Pembayaran</span></li>
+      <li class="menu-item {{ \Route::is('banksekolah.*') ? 'active' : '' }}">
+        <a href="{{ route('banksekolah.index') }}" class="menu-link">
+          <i class="menu-icon tf-icons bx bxs-bank"></i>
+          <div data-i18n="Basic">Rekening Sekolah</div>
+        </a>
+      </li>
       <li class="menu-item {{ \Route::is('biaya.*') ? 'active' : '' }}">
         <a href="{{ route('biaya.index') }}" class="menu-link">
           <i class="menu-icon tf-icons bx bx-receipt"></i>
@@ -50,6 +56,13 @@
         <a href="{{ route('tagihan.index') }}" class="menu-link">
           <i class="menu-icon tf-icons bx bxs-receipt"></i>
           <div data-i18n="Basic">Data Tagihan</div>
+        </a>
+      </li>
+      <li class="menu-header small text-uppercase"><span class="menu-header-text">Option</span></li>
+      <li class="menu-item {{ \Route::is('tagihan.*') ? 'active' : '' }}">
+        <a href="{{ route('logout') }}" class="menu-link">
+          <i class="menu-icon tf-icons bx bx-power-off me-2" style='color:#f31414'></i>
+          <div data-i18n="Basic">Log-out</div>
         </a>
       </li>
     </ul>

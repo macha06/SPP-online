@@ -46,7 +46,7 @@ class LoginController extends Controller
     }
     public function showLoginFormWali()
     {
-        return view('auth.login_sneat');
+        return view('auth.login_sneat_wali');
     }
 
     public function authenticated(Request $request, $user)

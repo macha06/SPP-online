@@ -16,7 +16,7 @@
     <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
         <!-- Menu -->
-          @include('layouts.sidebar') 
+          @include('layouts.sidebar_wali')
         <!-- / Menu -->
 
         <!-- Layout container -->

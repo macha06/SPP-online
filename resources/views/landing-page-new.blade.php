@@ -28,7 +28,7 @@
               <ul>
                 <li><a href="#">Features</a></li>
                 <li><a href="#">Pricing</a></li>
-                <li><a href="#">Testimonials</a></li>
+                <li><a href="{{ route('login') }}">Login untuk admin</a></li>
                 <li><a href="#" class="btn">Daftar</a></li>
               </ul>
             </div>
@@ -52,7 +52,7 @@
                 ANDA CUKUP DENGAN TRANSFER SAJA , TANPA HARUS RIBET DATANG KE SEKOLAH
               </p>
               <div class="cta">
-                <a href="{{ route('login') }}" class="btn btn-primar text-white">Masuk Sekarang!</a>
+                <a href="{{ route('login.wali') }}" class="btn btn-primar text-white">Masuk Sekarang!</a>
               </div>
             </div>
 

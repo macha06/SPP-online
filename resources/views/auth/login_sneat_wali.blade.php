@@ -65,7 +65,7 @@
               <input type="password" placeholder="Password" />
             </div>
             <input type="submit" class="btn" value="Sign up" />
-            <p class="social-text">Or Sign up with social platforms</p>
+            <p class="social-text">Atau daftar Mengunakan akun sosial media</p>
             <div class="social-media">
               <a href="#" class="social-icon">
                 <i class="fab fa-facebook-f"></i>
