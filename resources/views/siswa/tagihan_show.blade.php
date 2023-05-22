@@ -30,15 +30,39 @@
                             </tr>
                         </tfoot>
                     </table>     
-                    <div class="alert alert-secondary mt-3" role="alert">
-                        Pembayaran bisa dilakukan dengan cara langsung ke Admin sekolah atau di transfer melalui bank milik sekolah berikut : <br />
-                        <ul>
-                            @foreach ($bankSekolah as $itemBank)
-                                <li>
-                                    {{ $itemBank->nama_bank }} - {{ $itemBank->nomor_rekening }} - {{ $itemBank->nama_rekening }}
-                                </li>
-                            @endforeach
-                        </ul>
+                    <div class="alert alert-secondary mt-3" role="alert" style="color: black;">
+                        Pembayaran bisa dilakukan dengan cara langsung ke Admin sekolah atau di transfer melalui rekening milik sekolah dibawah ini : <br />
+                        Jangan Melakukan Transfer ke rekening selain dari rekening dibawah ini
+                    </div>
+                    <ul>
+                        <li><a href="">Lihat Cara Pembayaran Melalui ATM</a></li>
+                        <li><a href="">Lihat Cara Pembayaran Melalui internet-Banking</a></li>
+                    </ul>
+                    Setelah Melakukan Pembayaran, silahkan Upload bukti pembayaran melalui tombol konfirmasi yang ada dibawah ini
+                    <div class="row">
+                        @foreach ($bankSekolah as $itemBank)
+                        <div class="col-md-6">
+                            <div class="alert alert-primary" role="alert">
+                                <table width="100%">
+                                    <tbody>
+                                        <tr>
+                                            <td width="20%">Bank Tujuan</td>
+                                            <td >: {{ $itemBank->nama_bank }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Nomor Rekening</td>
+                                            <td>: {{ $itemBank->nomor_rekening }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Atas_nama</td>
+                                            <td>: {{ $itemBank->nama_rekening }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <a href="" class="btn btn-primary mt-3 ">Konfirmasi Pembayaran</a>
+                            </div>
+                        </div>
+                    @endforeach
                     </div>
                 </div>
             </div>
